@@ -1,5 +1,6 @@
-# RClient for the meXBT **DATA API**
+# RClient for the meXBT **DATA API** 
 * * *
+
 ## Introduction
 * * *
 R Code API for connecting to the **meXBT - The Mexican Exchange of Bitcoins**, *Public* API. This code is a series of functions for building *GET* *Request Queries* in order to pull information from the **meXBT** system, this can be read at their [HomePage](https://mexbt.com/en/api/http/)
