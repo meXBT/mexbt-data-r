@@ -61,23 +61,17 @@ img {
 
 
 
-<div id="rclient-for-the-mexbt-public-api" class="section level1">
-<h1>RClient for the meXBT <strong>PUBLIC API</strong></h1>
+<div id="rclient-for-the-mexbt-data-api" class="section level1">
+<h1>RClient for the meXBT <strong>DATA API</strong></h1>
 <hr />
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <hr />
 <p>R Code API for connecting to the <strong>meXBT - The Mexican Exchange of Bitcoins</strong>, <em>Public</em> API. This code is a series of functions for building <em>GET</em> <em>Request Queries</em> in order to pull information from the <strong>meXBT</strong> system, this can be read at their <a href="https://mexbt.com/en/api/http/">HomePage</a></p>
 <ul>
-<li><strong>Initial Developer:</strong> IF.FranciscoME</li>
 <li><strong>License:</strong> GNU General Public License</li>
 <li><strong>Location:</strong> Mexico City</li>
 </ul>
-</div>
-<div id="api-type-and-official-info" class="section level2">
-<h2>API Type and Official Info</h2>
-<hr />
-<p>This <strong>A</strong>pplication <strong>P</strong>rogram <strong>I</strong>nterface require <em>HTTP</em> request types, it is also a <strong>REST</strong> <strong>API</strong> , that is you have to fetch data from it every time you need it. More detailed information can be consulted at <a href="http://docs.mexbtpublicapi.apiary.io/#">meXBT apiary.io</a></p>
 </div>
 <div id="public-api-info" class="section level2">
 <h2>Public API Info</h2>
@@ -117,9 +111,9 @@ HttpAddress &lt;- &quot;https://data.mexbt.com/order-book/btcmxn&quot; </code></
 <div id="historical-trades" class="section level4">
 <h4>Historical Trades</h4>
 <pre class="r"><code># HTTP Address to fetch from for Btc/Usd
-HttpAddress &lt;- &quot;https://data.mexbt.com/trades/btcusd?since=1&quot;
+HttpAddress &lt;- &quot;https://data.mexbt.com/trades/btcusd?since=0&quot;
 # HTTP Address to fetch from for Btc/Mxn
-HttpAddress &lt;- &quot;https://data.mexbt.com/trades/btcmxn?since=1&quot;</code></pre>
+HttpAddress &lt;- &quot;https://data.mexbt.com/trades/btcmxn?since=0&quot;</code></pre>
 </div>
 <div id="actual-tick-price" class="section level4">
 <h4>Actual Tick (Price)</h4>

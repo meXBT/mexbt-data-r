@@ -1,7 +1,6 @@
 # -- ----------------------------------------------------------------------------------- #
 # -- meXBT API CONNECTOR --------------------------------------------------------------- #
 # -- License: GNU License V3 ----------------------------------------------------------- #
-# -- Initial Developer: FranciscoME ---------------------------------------------------- #
 # -- ----------------------------------------------------------------------------------- #
 
 # -- Install if required or Load necessary packages suppressing messages at console ---- #
@@ -23,14 +22,16 @@ suppressMessages(library (xts))        # Time series utilities
 if (!require(zoo)) install.packages('zoo', quiet = TRUE)
 suppressMessages(library (zoo))        # Time series utilities
 
-setwd("~/Documents/ComputationalFinance/GitHub/meXBTRClient")        # Change with yours
 options("scipen"=100)       # No scientific Notation when big or small numbers displayed
 
 # ------------------------------------------------------------------------------------- #
 # -- Get Tick Historical Prices from meXBT PUBLIC API --------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-HmeXBTBtcUsd1 <- "https://data.mexbt.com/trades/btcusd?since=1"               # BTC/USD
+# "since" parameter is the tick number from which you wish to fetch data, 0 is from the
+# very begining of our data
+
+HmeXBTBtcUsd1 <- "https://data.mexbt.com/trades/btcusd?since=0"               # BTC/USD
 HmeXBTBtcUsd2 <- getURL(HmeXBTBtcUsd1,cainfo=system.file("CurlSSL",
                  "cacert.pem",package="RCurl"))
 HmeXBTBtcUsd3 <- data.frame(fromJSON(HmeXBTBtcUsd2))
@@ -41,9 +42,9 @@ BtcUsd <- data.frame(HmeXBTBtcUsd3$tid,
           HmeXBTBtcUsd3$price, HmeXBTBtcUsd3$amount)                          # Formated
 colnames(BtcUsd) <- c("TickerID","TimeStamp","Price","Amount")                # Posixct
 
-HmeXBTBtcMxn1 <- "https://data.mexbt.com/trades/btcmxn?since=12205"
-HmeXBTBtcMxn2 <- getURL(HmeXBTBtcMxn1,cainfo=system.file("CurlSSL",
-                 "cacert.pem",package="RCurl"))
+HmeXBTBtcMxn1 <- "https://data.mexbt.com/trades/btcmxn?since=12205"           # 12205 an 
+HmeXBTBtcMxn2 <- getURL(HmeXBTBtcMxn1,cainfo=system.file("CurlSSL",           # arbitrary
+                 "cacert.pem",package="RCurl"))                               # Example
 HmeXBTBtcMxn3 <- data.frame(fromJSON(HmeXBTBtcMxn2))
 
 BtcMxn <- data.frame(HmeXBTBtcMxn3$tid,

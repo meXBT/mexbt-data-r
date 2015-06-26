@@ -1,23 +1,11 @@
-# RClient for the meXBT **PUBLIC API**
+# RClient for the meXBT **DATA API**
 * * *
 ## Introduction
 * * *
 R Code API for connecting to the **meXBT - The Mexican Exchange of Bitcoins**, *Public* API. This code is a series of functions for building *GET* *Request Queries* in order to pull information from the **meXBT** system, this can be read at their [HomePage](https://mexbt.com/en/api/http/)
 
-- **Initial Developer:** IF.FranciscoME
 - **License:** GNU General Public License
 - **Location:** Mexico City
-
-## API Type and Official Info
-* * *
-This **A**pplication **P**rogram **I**nterface require *HTTP* request types, it is also a
-**REST** **API** , that is you have to fetch data from it every time you need it. More detailed information can be consulted at [meXBT apiary.io](http://docs.mexbtpublicapi.apiary.io/#)
-
-## Public API Info
-* * *
-- **Order Book** For every market available, currently two: Btc/Usd and Btc/Mxn.
-- **Historical Trades** Every trade executed at the exchange, for both markets.
-- **Actual Tick (Price)** Present ticker price of Btc/Usd and Btc/Mxn.
 
 ## R Packages/Libraries used
 * * *
@@ -35,6 +23,12 @@ the following packages/libraries, which official documentation is also included 
 
 You can check and download the official documentation for these packages from this repository [Here](https://github.com/FranciscoME/meXBTRClient/tree/master/LibrariesInfo) or from the **CRAN** site [Here](http://cran.r-project.org/src/contrib/Archive/)
 
+## Data API Info Provided
+* * *
+- **Order Book** For every market available, currently two: Btc/Usd and Btc/Mxn.
+- **Historical Trades** Every trade executed at the exchange, for both markets.
+- **Actual Tick (Price)** Present ticker price of Btc/Usd and Btc/Mxn.
+
 ## HTTP Character String to fetch data
 * * *
 #### Order Book
@@ -50,9 +44,9 @@ HttpAddress <- "https://data.mexbt.com/order-book/btcmxn"
 
 ```r
 # HTTP Address to fetch from for Btc/Usd
-HttpAddress <- "https://data.mexbt.com/trades/btcusd?since=1"
+HttpAddress <- "https://data.mexbt.com/trades/btcusd?since=0"
 # HTTP Address to fetch from for Btc/Mxn
-HttpAddress <- "https://data.mexbt.com/trades/btcmxn?since=1"
+HttpAddress <- "https://data.mexbt.com/trades/btcmxn?since=0"
 ```
 
 #### Actual Tick (Price)
@@ -81,7 +75,7 @@ BtcMxn <- data.frame(HmeXBTBtcMxn3$tid,
           HmeXBTBtcMxn3$price, HmeXBTBtcMxn3$amount)                          # Formated
 colnames(BtcMxn) <- c("TickerID","TimeStamp","Price","Amount")                # Posixct
 ```
-<br>
+
 <br>
 
 **FranciscoME**: *Research & Development* - franciscome@mexbt.com
