@@ -64,9 +64,9 @@ This code generates a request to fetch Btc/Mxn Exchange Rate, convert the respon
 any computation.
 
 ```r
-HmeXBTBtcMxn1 <- "https://data.mexbt.com/trades/btcmxn?since=12205"
-HmeXBTBtcMxn2 <- getURL(HmeXBTBtcMxn1,cainfo=system.file("CurlSSL",
-                 "cacert.pem",package="RCurl"))
+HmeXBTBtcMxn1 <- "https://data.mexbt.com/trades/btcmxn?since=12205"           # 12205 an 
+HmeXBTBtcMxn2 <- getURL(HmeXBTBtcMxn1,cainfo=system.file("CurlSSL",           # arbitrary
+                 "cacert.pem",package="RCurl"))                               # Example
 HmeXBTBtcMxn3 <- data.frame(fromJSON(HmeXBTBtcMxn2))
 
 BtcMxn <- data.frame(HmeXBTBtcMxn3$tid,
@@ -75,6 +75,21 @@ BtcMxn <- data.frame(HmeXBTBtcMxn3$tid,
           HmeXBTBtcMxn3$price, HmeXBTBtcMxn3$amount)                          # Formated
 colnames(BtcMxn) <- c("TickerID","TimeStamp","Price","Amount")                # Posixct
 ```
+
+<br>
+
+This should return two *data.frame* objects, first **HmeXBTBtcMxn3** is in raw format,
+in order to you can change the *TimeStamp* with your current *Time Zone*, **BtcMxn** 
+object is with *'America/Mexico_City'* *Time Zone* , also the content is reorganized 
+like the following:
+
+<br>
+
+| TickerID | TimeStamp           | Price   | Amount     |
+|----------|---------------------|---------|------------|
+| 12205    | 2015-06-25 17:02:21 | 3736.33 | 0.99375858 |
+| 12206    | 2015-06-25 17:06:07 | 3739.43 | 0.38670599 |
+| 12207    | 2015-06-25 18:51:46 | 3744.02 | 0.20790000 |
 
 <br>
 

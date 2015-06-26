@@ -73,15 +73,6 @@ img {
 <li><strong>Location:</strong> Mexico City</li>
 </ul>
 </div>
-<div id="public-api-info" class="section level2">
-<h2>Public API Info</h2>
-<hr />
-<ul>
-<li><strong>Order Book</strong> For every market available, currently two: Btc/Usd and Btc/Mxn.</li>
-<li><strong>Historical Trades</strong> Every trade executed at the exchange, for both markets.</li>
-<li><strong>Actual Tick (Price)</strong> Present ticker price of Btc/Usd and Btc/Mxn.</li>
-</ul>
-</div>
 <div id="r-packageslibraries-used" class="section level2">
 <h2>R Packages/Libraries used</h2>
 <hr />
@@ -97,6 +88,15 @@ img {
 <li><strong>zoo</strong>: <em>S3 Infrastructure for Regular and Irregular Time Series.</em></li>
 </ul>
 <p>You can check and download the official documentation for these packages from this repository <a href="https://github.com/FranciscoME/meXBTRClient/tree/master/LibrariesInfo">Here</a> or from the <strong>CRAN</strong> site <a href="http://cran.r-project.org/src/contrib/Archive/">Here</a></p>
+</div>
+<div id="data-api-info-provided" class="section level2">
+<h2>Data API Info Provided</h2>
+<hr />
+<ul>
+<li><strong>Order Book</strong> For every market available, currently two: Btc/Usd and Btc/Mxn.</li>
+<li><strong>Historical Trades</strong> Every trade executed at the exchange, for both markets.</li>
+<li><strong>Actual Tick (Price)</strong> Present ticker price of Btc/Usd and Btc/Mxn.</li>
+</ul>
 </div>
 <div id="http-character-string-to-fetch-data" class="section level2">
 <h2>HTTP Character String to fetch data</h2>
@@ -126,9 +126,9 @@ HttpAddress &lt;- &quot;https://data.mexbt.com/ticker/btcmxn&quot;</code></pre>
 <div id="an-easy-example" class="section level2">
 <h2>An Easy Example</h2>
 <p>This code generates a request to fetch Btc/Mxn Exchange Rate, convert the response from <em>JSON</em> format to a <em>data.frame</em> object, then modify the unix timestamp to a Human readable format to finally re-organize the columns and deliver a tidy <em>data.frame</em> ready to use for any computation.</p>
-<pre class="r"><code>HmeXBTBtcMxn1 &lt;- &quot;https://data.mexbt.com/trades/btcmxn?since=12205&quot;
-HmeXBTBtcMxn2 &lt;- getURL(HmeXBTBtcMxn1,cainfo=system.file(&quot;CurlSSL&quot;,
-                 &quot;cacert.pem&quot;,package=&quot;RCurl&quot;))
+<pre class="r"><code>HmeXBTBtcMxn1 &lt;- &quot;https://data.mexbt.com/trades/btcmxn?since=12205&quot;           # 12205 an 
+HmeXBTBtcMxn2 &lt;- getURL(HmeXBTBtcMxn1,cainfo=system.file(&quot;CurlSSL&quot;,           # arbitrary
+                 &quot;cacert.pem&quot;,package=&quot;RCurl&quot;))                               # Example
 HmeXBTBtcMxn3 &lt;- data.frame(fromJSON(HmeXBTBtcMxn2))
 
 BtcMxn &lt;- data.frame(HmeXBTBtcMxn3$tid,
@@ -136,7 +136,40 @@ BtcMxn &lt;- data.frame(HmeXBTBtcMxn3$tid,
           origin = '1970-01-01', tz='America/Mexico_City'),                   # Date
           HmeXBTBtcMxn3$price, HmeXBTBtcMxn3$amount)                          # Formated
 colnames(BtcMxn) &lt;- c(&quot;TickerID&quot;,&quot;TimeStamp&quot;,&quot;Price&quot;,&quot;Amount&quot;)                # Posixct</code></pre>
-<p><br> <br></p>
+<p><br></p>
+<p>This should return two <em>data.frame</em> objects, first <strong>HmeXBTBtcMxn3</strong> is in raw format, in order to you can change the <em>TimeStamp</em> with your current <em>Time Zone</em>, <strong>BtcMxn</strong> object is with <em>‘America/Mexico_City’</em> <em>Time Zone</em> , also the content is reorganized like the following:</p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">TickerID</th>
+<th align="left">TimeStamp</th>
+<th align="left">Price</th>
+<th align="left">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">12205</td>
+<td align="left">2015-06-25 17:02:21</td>
+<td align="left">3736.33</td>
+<td align="left">0.99375858</td>
+</tr>
+<tr class="even">
+<td align="left">12206</td>
+<td align="left">2015-06-25 17:06:07</td>
+<td align="left">3739.43</td>
+<td align="left">0.38670599</td>
+</tr>
+<tr class="odd">
+<td align="left">12207</td>
+<td align="left">2015-06-25 18:51:46</td>
+<td align="left">3744.02</td>
+<td align="left">0.20790000</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 <p><strong>FranciscoME</strong>: <em>Research &amp; Development</em> - <a href="mailto:franciscome@mexbt.com">franciscome@mexbt.com</a></p>
 </div>
 </div>
