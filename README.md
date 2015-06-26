@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # RClient for the meXBT **DATA API** 
+=======
+# RClient for the meXBT **DATA API** ![meXBT](https://github.com/FranciscoME/mexbt-data-r/blob/master/SmallLogo.png "meXBT")
+>>>>>>> be608c42a0b7e4755c478c051788bb81cfd3080f
 * * *
 
 ## Introduction
