@@ -119,4 +119,20 @@ like the following:
 
 <br>
 
+## How to load this code from R and/or RStudio 
+
+Just need to source the .R File code from the web, this can be done in several ways, one is the following using the *downloader* library. 
+
+```r
+if (!require(downloader)) install.packages('downloader', quiet = TRUE)
+suppressMessages(library (downloader)) # basic functions
+
+downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
+```
+The following must be loaded in your *Environment* in cas you are using RStudio:
+
+![Environment](https://github.com/FranciscoME/mexbt-data-r/Functions.png "Loaded Functions ready to use")
+
+<br>
+
 **FranciscoME**: *Research & Development* - franciscome@mexbt.com
