@@ -1,15 +1,15 @@
 # RClient for the meXBT **DATA API**
-* * *
+
 
 ## Introduction
-* * *
+
 R Code API for connecting to the **meXBT - The Mexican Exchange of Bitcoins**, *Public* API. This code is a series of functions for building *GET* *Request Queries* in order to pull information from the **meXBT** system, this can be read at their [HomePage](https://mexbt.com/en/api/http/)
 
 - **License:** GNU General Public License
 - **Location:** Mexico City
 
 ## R Packages/Libraries used
-* * *
+
 Some important functions are used to build this API Client/Wrapper. Most of them come from
 the following packages/libraries, which official documentation is also included in this repossitory:
 
@@ -25,13 +25,38 @@ the following packages/libraries, which official documentation is also included 
 You can check and download the official documentation for these packages from this repository [Here](https://github.com/FranciscoME/meXBTRClient/tree/master/LibrariesInfo) or from the **CRAN** site [Here](http://cran.r-project.org/src/contrib/Archive/)
 
 ## Data API Info Provided
-* * *
+
 - **Order Book** For every market available, currently two: Btc/Usd and Btc/Mxn.
 - **Historical Trades** Every trade executed at the exchange, for both markets.
 - **Actual Tick (Price)** Present ticker price of Btc/Usd and Btc/Mxn.
 
-## HTTP Character String to fetch data
-* * *
+## How to use this RClient ?
+
+All you need is to locate the function which provides the information you required, current supported are the following:
+
+- **Order Book** is requested with: **meXBTOrderBook***(BtcPair)*
+- **Historical Trades** is requested with: **meXBTHistoricPrices***(BtcPair,TimeZonePar,InfoSince)*
+- **Actual Tick (Price)** is requested with: **meXBTTicker***(BtcPair)*
+
+## Type of entry info and formats
+
+- **BtcPair** : Either **btcusd** (BitCoin Vs American Dollar) or **btcmxn** (BitCoin Vs Mexican Peso)
+- **InfoSince**: Parameter that specifies the tick/trade number from which you want to fetch data, 0 is from the
+very begining of our data and that is "2014-05-12 21:16:34 CDT" for both btcusd and and btcmxn.
+- **TimeZonePar**: Fomart as stated by the **IANA** (Internet Assigned Numbers Authority) time zone database, a complete list can be found **[Here](http://developer.oanda.com/docs/timezones.txt)**, and more info about **TZ DataBse** in **[Here](https://en.wikipedia.org/wiki/Tz_database)**
+
+## Current Functions in RClient
+
+```r
+Eg1 <- meXBTTicker("btcmxn")                                    # meXBTTicker(BtcPair)
+Eg2 <- meXBTOrderBook("btcmxn")                                 # meXBTOrderBook(BtcPair)
+Eg3 <- meXBTHistoricPrices("btcusd","America/Mexico_City",650)  # meXBTHistoricPrices(BtcPair,TimeZonePar,InfoSince)
+```
+
+## Specific HTTP Character String to fetch data manually
+
+Or if you want/need to build your own *http* GET - POST functions, all you need is to generate character strings like the following and receive the response in **JSON** format.
+
 #### Order Book
 
 ```r
