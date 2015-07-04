@@ -1,7 +1,3 @@
----
-output: pdf_document
----
-
 # RClient for the meXBT **DATA API**
 
 
