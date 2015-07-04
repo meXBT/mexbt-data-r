@@ -132,9 +132,9 @@ Lo anterior debe de arrojar dos objetos *data.frame*, el primero **HmeXBTBtcMxn3
 
 <br>
 
-## ¿Cómo cargar éste código desde R y/o RStudio
+## ¿Cómo cargar éste código desde R y/o RStudio?
 
-Para cargar éste código remotamente solo es necesario compilar el archivo .R desde la web, esto puede ser efectuado de distintas maneras, una es utilizando la librería de R *downloader*.
+Para cargar éste código remotamente solo es necesario compilar el archivo .R desde la web, esto puede ser efectuado de distintas maneras, una es utilizando la librería de R *downloader*. 
 
 ```r
 if (!require(downloader)) install.packages('downloader', quiet = TRUE)
@@ -142,7 +142,7 @@ suppressMessages(library (downloader)) # basic functions
 
 downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
 ```
-De manera que con esas dos líneas se lograr y si todo sale bien lo siguiente debe de aparecer en la parte de *Environment* en *RStudio*.
+Lo que se está haciendo es dirigirse directamente al código fuente [Aquí](https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R) y ejecutar esas líneas dentro de *R*. La ventaja de utilizar *downloader* es que se ejecuta en memoria las funciones y se almacenan en el *Environment* quedando listas para utilizarse. Si todo funciona bien lo siguiente debe de aparecer en la parte de *Environment* en *RStudio*.
 
 ![Environment](https://github.com/FranciscoME/mexbt-data-r/blob/master/Functions.png "Loaded Functions ready to use")
 
