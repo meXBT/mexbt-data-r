@@ -132,4 +132,20 @@ Lo anterior debe de arrojar dos objetos *data.frame*, el primero **HmeXBTBtcMxn3
 
 <br>
 
-**FranciscoME**: *Investigación y Desarrollo* - franciscome@mexbt.com
+## ¿Cómo cargar éste código desde R y/o RStudio
+
+Para cargar éste código remotamente solo es necesario compilar el archivo .R desde la web, esto puede ser efectuado de distintas maneras, una es utilizando la librería de R *downloader*.
+
+```r
+if (!require(downloader)) install.packages('downloader', quiet = TRUE)
+suppressMessages(library (downloader)) # basic functions
+
+downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
+```
+De manera que con esas dos líneas se lograr y si todo sale bien lo siguiente debe de aparecer en la parte de *Environment* en *RStudio*.
+
+![Environment](https://github.com/FranciscoME/mexbt-data-r/blob/master/Functions.png "Loaded Functions ready to use")
+
+<br>
+
+**FranciscoME**: *Research & Development* - franciscome@mexbt.com
