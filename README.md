@@ -131,7 +131,7 @@ downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data
 ```
 The following must be loaded in your *Environment* in cas you are using RStudio:
 
-![Environment](https://github.com/FranciscoME/mexbt-data-r/Functions.png "Loaded Functions ready to use")
+![Environment](https://github.com/FranciscoME/mexbt-data-r/blob/master/Functions.png "Loaded Functions ready to use")
 
 <br>
 
