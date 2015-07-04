@@ -1,6 +1,4 @@
----
-output: pdf_document
----
+
 ## Introducción
 
 Código en R para conexión con la API de **meXBT - Exchange Mexicano de Bitcoins**. Éste código es una serie de funciones para construir peticiones ó *queries* del tipo *GET*, de tal manera que sea posible comunicarse con el servidor de **meXBT** y obtener cierto tipo de información útil para construir algorítmos de trading, aplicaciones web, modelos financieros en general que hagan uso de información respecto al precio del BitCoin.
