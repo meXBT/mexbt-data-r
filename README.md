@@ -1,7 +1,3 @@
----
-output: pdf_document
----
-
 # RClient for the meXBT **DATA API**
 
 
@@ -120,6 +116,22 @@ like the following:
 | 12205    | 2015-06-25 17:02:21 | 3736.33 | 0.99375858 |
 | 12206    | 2015-06-25 17:06:07 | 3739.43 | 0.38670599 |
 | 12207    | 2015-06-25 18:51:46 | 3744.02 | 0.20790000 |
+
+<br>
+
+## How to load this code from R and/or RStudio 
+
+Just need to source the .R File code from the web, this can be done in several ways, one is the following using the *downloader* library. 
+
+```r
+if (!require(downloader)) install.packages('downloader', quiet = TRUE)
+suppressMessages(library (downloader)) # basic functions
+
+downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
+```
+The following must be loaded in your *Environment* in cas you are using RStudio:
+
+![Environment](https://github.com/FranciscoME/mexbt-data-r/Functions.png "Loaded Functions ready to use")
 
 <br>
 
