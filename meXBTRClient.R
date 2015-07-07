@@ -104,7 +104,7 @@ HmeXBTBtc2  <- getURL(HmeXBTBtc1c,cainfo=system.file("CurlSSL",
                  "cacert.pem",package="RCurl"))
 HmeXBTBtc3 <- data.frame(fromJSON(HmeXBTBtc2))
 
-BtcPrice  <- data.frame(as.POSIXct(as.numeric(as.character(HmeXBTBtc3$date)),
+BtcPrice   <- data.frame(as.POSIXct(as.numeric(as.character(HmeXBTBtc3$date)),
 origin = '1970-01-01', tz='America/Mexico_City'),HmeXBTBtc3$price)
 colnames(BtcPrice) <- c("TimeStamp","Price")
 
@@ -122,5 +122,3 @@ colnames(Final) <- c("TimeStamp","Open(Price)","High(Price)","Low(Price)","Close
 "Open(Volume)","High(Volume)","Low(Volume)","Close(Volume)")
 return(Final)
 }
-
-meXBTOHLCTest <- meXBTOHLC("btcmxn",12700,"hours")
