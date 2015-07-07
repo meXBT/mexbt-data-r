@@ -50,8 +50,6 @@ Todo lo que hay que hacer es localizar la función que provee de la información
 - **InfoSince**: Para especificar a partir de cuál transacción se desea consultar el histórico de transacciones, iniciando desde 0 para recibir absolutamente todas las transacciones realizadas en **meXBT**, lo cual sucedió en "2014-05-12 21:16:34 CDT" para los mercados *btcusd* y *btcmxn*
 - **TimeZonePar**: Zona Horaria en formáto según la **IANA** (Internet Assigned Numbers Authority) time zone database, se puede consultar la lista completa de zonas horarios en el mundo **[Aquí](http://developer.oanda.com/docs/timezones.txt)**, y para mas información respecto **TZ DataBse** se puede recurrir **[Aquí](https://en.wikipedia.org/wiki/Tz_database)**
 
-<br>
-
 ## Funciones que éste Cliente de R soporta
 
 ```r
@@ -66,8 +64,6 @@ Eg3 <- meXBTHistoricPrices("btcusd","America/Mexico_City",650)  # meXBTHistoricP
 
 Ó si deseas/necesitas construir tu propio código en éste lenguaje o en cualquier otro lo único que necesitas hacer es construir tus propias peticiones *http* GET - POST. Todo lo que hay que hacer es generar cadenas de caracteres como las que se muestras a continuación y se obtendrá una respuesta en formáto **JSON**.
 
-<br>
-
 #### Libro de ordenes
 
 ```r
@@ -77,8 +73,6 @@ HttpAddress <- "https://data.mexbt.com/order-book/btcusd"
 HttpAddress <- "https://data.mexbt.com/order-book/btcmxn" 
 ```
 
-<br>
-
 #### Transacciones históricas
 
 ```r
@@ -87,8 +81,6 @@ HttpAddress <- "https://data.mexbt.com/trades/btcusd?since=0"
 # Dirección HTTP para Btc/Mxn
 HttpAddress <- "https://data.mexbt.com/trades/btcmxn?since=0"
 ```
-
-<br>
 
 #### Precio Actual
 
@@ -118,11 +110,8 @@ BtcMxn <- data.frame(HmeXBTBtcMxn3$tid,
 colnames(BtcMxn) <- c("TickerID","TimeStamp","Price","Amount")                # Posixct
 ```
 
-<br>
-
 Lo anterior debe de arrojar dos objetos *data.frame*, el primero **HmeXBTBtcMxn3** que está en formáto crudo, de manera que se pueda cambiar el factor *TimeStamp* con el uso horario elegido en la parte *Time Zone*. El objeto **BtcMxn** y particularmente su impresión de tiempo con el uso horario de *'America/Mexico_City'* *Time Zone*. El resultado debe de tener una estructura como la siguiente:
 
-<br>
 
 | TickerID | TimeStamp           | Price   | Amount     |
 |----------|---------------------|---------|------------|
@@ -132,4 +121,21 @@ Lo anterior debe de arrojar dos objetos *data.frame*, el primero **HmeXBTBtcMxn3
 
 <br>
 
-**FranciscoME**: *Investigación y Desarrollo* - franciscome@mexbt.com
+## ¿Cómo cargar éste código desde R y/o RStudio?
+
+Para cargar éste código remotamente solo es necesario compilar el archivo .R desde la web, esto puede ser efectuado de distintas maneras, una es utilizando la librería de R *downloader*. 
+
+```r
+if (!require(downloader)) install.packages('downloader', quiet = TRUE)
+suppressMessages(library (downloader)) # basic functions
+
+downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
+```
+Lo que se está haciendo es dirigirse directamente al código fuente [Aquí](https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R) y ejecutar esas líneas dentro de *R*. La ventaja de utilizar *downloader* es que se ejecuta en memoria las funciones y se almacenan en el *Environment* quedando listas para utilizarse. Si todo funciona bien lo siguiente debe de aparecer en la parte de *Environment* en *RStudio*.
+
+![Environment](https://github.com/FranciscoME/mexbt-data-r/blob/master/Functions.png "Loaded Functions ready to use")
+
+<br>
+<br>
+
+**FranciscoME**: *Research & Development* - franciscome@mexbt.com

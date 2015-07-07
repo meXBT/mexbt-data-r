@@ -119,9 +119,9 @@ like the following:
 
 <br>
 
-## How to load this code from R and/or RStudio 
+## How to load this code into R and/or RStudio
 
-Just need to source the .R File code from the web, this can be done in several ways, one is the following using the *downloader* library. 
+In order to do so one must source the code externally from the web, this can be done in several ways, the following is just one of manay, as an example with the *R* library *downloader*. 
 
 ```r
 if (!require(downloader)) install.packages('downloader', quiet = TRUE)
@@ -129,10 +129,11 @@ suppressMessages(library (downloader)) # basic functions
 
 downloader::source_url("https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R",prompt=FALSE,quiet=TRUE)
 ```
-The following must be loaded in your *Environment* in cas you are using RStudio:
+So what is done here is to redirect to the source code in [Here](https://raw.githubusercontent.com/FranciscoME/mexbt-data-r/master/meXBTRClient.R) and source those code lines into *R*. the advantage of using *downloader* is that it sources that code lines from the virtual memmory and stores the functions in the *Environment*, so the are ready to use. If everything works properly, the output must be having these functions in the *Environment* as the following image from the *RStudio*.
 
-![Environment](https://github.com/FranciscoME/mexbt-data-r/Functions.png "Loaded Functions ready to use")
+![Environment](https://github.com/FranciscoME/mexbt-data-r/blob/master/Functions.png "Loaded Functions ready to use")
 
+<br>
 <br>
 
 **FranciscoME**: *Research & Development* - franciscome@mexbt.com
