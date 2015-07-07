@@ -15,6 +15,8 @@ if (!require(lubridate)) install.packages('lubridate', quiet = TRUE)    # Date O
 suppressMessages(library (lubridate))
 if (!require(plyr)) install.packages('plyr', quiet = TRUE)              # General data treatment
 suppressMessages(library (plyr))
+if (!require(quantmod)) install.packages('quantmod', quiet = TRUE)
+suppressMessages(library (quantmod))   # Stock Prices and Dividends from YAHOO
 if (!require(RCurl)) install.packages('RCurl', quiet = TRUE)            # Read URL's and get data
 suppressMessages(library (RCurl))
 if (!require(xts)) install.packages('xts', quiet = TRUE)                # Extesible Time Series
@@ -88,3 +90,37 @@ meXBTBtcUsdOB <- data.frame(meXBTts,meXBTBtcUsdOB[,])
 colnames(meXBTBtcUsdOB) <- c("TimeStamp","Price","Amount","Side")
 return(meXBTBtcUsdOB)
 }
+
+# ----------------------------------------------------------------------------------------------- #
+# -- OHLC Historic Prices ----------------------------------------------------------------------- #
+# ----------------------------------------------------------------------------------------------- #
+
+meXBTOHLC <- function(BtcPair,InfoSince,TimeInterval)
+{
+HmeXBTBtc1a <- paste("https://data.mexbt.com/trades/",BtcPair,sep="")
+HmeXBTBtc1b <- paste(HmeXBTBtc1a,"?since=",sep="")
+HmeXBTBtc1c <- paste(HmeXBTBtc1b,InfoSince,sep="")
+HmeXBTBtc2  <- getURL(HmeXBTBtc1c,cainfo=system.file("CurlSSL",
+                 "cacert.pem",package="RCurl"))
+HmeXBTBtc3 <- data.frame(fromJSON(HmeXBTBtc2))
+
+BtcPrice  <- data.frame(as.POSIXct(as.numeric(as.character(HmeXBTBtc3$date)),
+origin = '1970-01-01', tz='America/Mexico_City'),HmeXBTBtc3$price)
+colnames(BtcPrice) <- c("TimeStamp","Price")
+
+BtcAmount <- data.frame(as.POSIXct(as.numeric(as.character(HmeXBTBtc3$date)),
+origin = '1970-01-01', tz='America/Mexico_City'),HmeXBTBtc3$amount)
+colnames(BtcAmount) <- c("TimeStamp","Amount")
+
+xtsBtcPrice  <- xts(BtcPrice$Price, order.by = BtcPrice$TimeStamp)
+xtsBtcAmount <- xts(BtcAmount$Amount, order.by = BtcAmount$TimeStamp)
+xtsBtcPrice  <- to.period(xtsBtcPrice, period = TimeInterval,k=1, indexAt="startof")
+xtsBtcAmount <- to.period(xtsBtcAmount, period = TimeInterval,k=1, indexAt="startof")
+Final <- cbind(xtsBtcPrice,xtsBtcAmount)
+Final <- fortify.zoo(Final)
+colnames(Final) <- c("TimeStamp","Open(Price)","High(Price)","Low(Price)","Close(Price)",
+"Open(Volume)","High(Volume)","Low(Volume)","Close(Volume)")
+return(Final)
+}
+
+meXBTOHLCTest <- meXBTOHLC("btcmxn",12700,"hours")
