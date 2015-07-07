@@ -118,7 +118,7 @@ xtsBtcPrice  <- to.period(xtsBtcPrice, period = TimeInterval,k=1, indexAt="start
 xtsBtcAmount <- to.period(xtsBtcAmount, period = TimeInterval,k=1, indexAt="startof")
 Final <- cbind(xtsBtcPrice,xtsBtcAmount)
 Final <- fortify.zoo(Final)
-colnames(Final) <- c("TimeStamp","Open(Price)","High(Price)","Low(Price)","Close(Price)",
-"Open(Volume)","High(Volume)","Low(Volume)","Close(Volume)")
+colnames(Final) <- c("TimeStamp","Open.Price","High.Price","Low.Price","Close.Price",
+"Open.Volume","High.Volume","Low.Volume","Close.Volume")
 return(Final)
 }
